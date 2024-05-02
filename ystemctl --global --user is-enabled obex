@@ -1,0 +1,24 @@
+[0;1;32m●[0m bluetooth.service - Bluetooth service
+     Loaded: loaded (]8;;file://fedora/usr/lib/systemd/system/bluetooth.service/usr/lib/systemd/system/bluetooth.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)
+    Drop-In: /usr/lib/systemd/system/service.d
+             └─]8;;file://fedora/usr/lib/systemd/system/service.d/10-timeout-abort.conf10-timeout-abort.conf]8;;
+     Active: [0;1;32mactive (running)[0m since Mon 2024-03-11 11:55:25 EET; 2h 35min ago
+       Docs: ]8;;man:bluetoothd(8)man:bluetoothd(8)]8;;
+   Main PID: 1376 (bluetoothd)
+     Status: "[0;1;36mRunning[0m"
+      Tasks: 1 (limit: 18409)
+     Memory: 2.1M
+        CPU: 133ms
+     CGroup: /system.slice/bluetooth.service
+             └─[0;38;5;245m1376 /usr/libexec/bluetooth/bluetoothd[0m
+
+бер 11 11:55:49 fedora bluetoothd[1376]: Endpoint unregistered: sender=:1.92 path=/MediaEndpoint/A2DPSource/sbc
+бер 11 11:55:49 fedora bluetoothd[1376]: Endpoint unregistered: sender=:1.92 path=/MediaEndpoint/A2DPSink/sbc_xq
+бер 11 11:55:49 fedora bluetoothd[1376]: Endpoint unregistered: sender=:1.92 path=/MediaEndpoint/A2DPSource/sbc_xq
+бер 11 11:55:49 fedora bluetoothd[1376]: Endpoint unregistered: sender=:1.92 path=/MediaEndpoint/A2DPSource/faststream
+бер 11 11:55:49 fedora bluetoothd[1376]: Endpoint unregistered: sender=:1.92 path=/MediaEndpoint/A2DPSource/faststream_duplex
+бер 11 11:55:49 fedora bluetoothd[1376]: Endpoint unregistered: sender=:1.92 path=/MediaEndpoint/A2DPSink/opus_05
+бер 11 11:55:49 fedora bluetoothd[1376]: Endpoint unregistered: sender=:1.92 path=/MediaEndpoint/A2DPSource/opus_05
+бер 11 11:55:49 fedora bluetoothd[1376]: Endpoint unregistered: sender=:1.92 path=/MediaEndpoint/A2DPSink/opus_05_duplex
+бер 11 11:55:49 fedora bluetoothd[1376]: Endpoint unregistered: sender=:1.92 path=/MediaEndpoint/A2DPSource/opus_05_duplex
+бер 11 11:55:49 fedora bluetoothd[1376]: Battery Provider Manager destroyed
