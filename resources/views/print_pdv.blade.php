@@ -108,7 +108,7 @@
                      @foreach ($data->works as $work)
                         <tr class="border-b border-gray-200 ">
                             <td class="px-4 py-1">{{$loop->index}}</td>
-                            <td class="px-4 py-1">{{$work?->work_name->title ?? ''}} УКТ ЗЕД 48.26.66</td>
+                            <td class="px-4 py-1">{{$work?->work_name->title ?? ''}} УКТ ЗЕД 45.20.1</td>
                             <td class="px-4 py-1 text-right">{{number_format((float)$work->price, 2, '.', '') }} грн</td>
                             <td class="px-4 py-1 text-right">{{number_format((float) $work->count, 2, '.', '')}} шт</td>
                             <td class="px-4 py-1 text-right">{{ number_format((float)$work->price * (float)$work->count, 2, '.', '')}} грн</td>
