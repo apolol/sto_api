@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ClientsController;
 use App\Http\Controllers\Api\OrdersController;
 use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\ResultsController;
+use App\Http\Controllers\Api\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,7 +18,7 @@ use App\Http\Controllers\Api\ResultsController;
 |
 */
 
-Route::middleware(['auth:sanctum'])->get('/user', [\App\Http\Controllers\Api\UserController::class, 'index']);
+Route::middleware(['auth:sanctum'])->get('/user', [UserController::class, 'index']);
 
 Route::middleware(['auth:sanctum'])->group(function (){
     Route::group(['prefix' => 'clients'], function(){
