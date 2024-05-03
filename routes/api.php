@@ -21,6 +21,9 @@ use App\Http\Controllers\Api\UserController;
 Route::middleware(['auth:sanctum'])->get('/user', [UserController::class, 'index']);
 
 Route::middleware(['auth:sanctum'])->group(function (){
+    Route::get('/brands_list',[ServiceController::class,'brandsList']);
+    Route::post('/store_brand',[ServiceController::class,'storeBrand']);
+
     Route::group(['prefix' => 'clients'], function(){
         Route::get('/',[ClientsController::class,'getClients']);
         Route::get('/get_header_data',[ClientsController::class,'getHeaderInfo']);
