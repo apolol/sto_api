@@ -50,6 +50,7 @@ Route::middleware(['auth:sanctum'])->group(function (){
         Route::post('/store_product', [OrdersController::class, 'storeProduct']);
         Route::put('/update_product/{orderProduct}', [OrdersController::class, 'updateProduct']);
         Route::put('/update_order/{order}', [OrdersController::class, 'updateOrder'])->middleware('role:admin');
+        Route::put('/update_odometer/{order}', [OrdersController::class, 'updateOrder']);
         Route::put('/update_order_status/{order}', [OrdersController::class, 'updateOrderStatus'])->middleware('role:admin');
         Route::put('/send_sms/{order}', [OrdersController::class, 'sendSmsDone']);
         Route::put('/make_check/{order}', [OrdersController::class, 'makeCheck']);
