@@ -30,7 +30,7 @@ class Client extends Model
 
     public function getFullNameAttribute()
     {
-        if ($this->first_name != null)
+        if ($this->type == 0)
             return $this->first_name . ' ' . $this->last_name;
 
         return $this->company_name. ' (ПДВ!!!)';
