@@ -107,7 +107,7 @@
 
                      @foreach ($data->works as $work)
                         <tr class="border-b border-gray-200 ">
-                            <td class="px-4 py-1">{{$loop->index}}</td>
+                            <td class="px-4 py-1">{{$loop->index + 1}}</td>
                             <td class="px-4 py-1">{{$work?->work_name->title ?? ''}} УКТ ЗЕД 45.20.1</td>
                             <td class="px-4 py-1 text-right">{{number_format((float)$work->price, 2, '.', '') }} грн</td>
                             <td class="px-4 py-1 text-right">{{number_format((float) $work->count, 2, '.', '')}} шт</td>
@@ -153,7 +153,7 @@
                     </tr>
                     @foreach ($data->products as $prod)
                         <tr class="border-b border-gray-200 ">
-                            <td class="px-4 py-1">{{$loop->index}}</td>
+                            <td class="px-4 py-1">{{$loop->index + 1}}</td>
                             <td class="px-4 py-1">{{$prod->title}} УКТ ЗЕД {{$prod->uktz}}</td>
                             <td class="px-4 py-1 text-right">{{number_format((float)$prod->price_for_client, 2, '.', '') }} грн</td>
                             <td class="px-4 py-1 text-right">{{number_format((float)$prod->count, 2, '.', '') }}</td>

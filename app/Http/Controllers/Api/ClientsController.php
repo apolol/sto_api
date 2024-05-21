@@ -141,7 +141,7 @@ class ClientsController extends Controller
         $client_car = new ClientCar();
         $client_car->client_id = $request->client_id;
         $client_car->brand_id = $request->brand['id'];
-        $client_car->year = $request->year;
+        $client_car->year = $request->year ?? 0;
         $client_car->odometer = $request->odometer;
         $client_car->engine_type = $request->engine_type;
         $client_car->car_plate = $request->car_plate;
