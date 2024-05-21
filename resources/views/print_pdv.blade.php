@@ -9,7 +9,7 @@
     <div class="flex flex-wrap items-center gap-1">
         <div class="flex flex-wrap w-7/12">
             <h1 class="w-full text-[11px]">Акт виконаних робіт</h1>
-            <span class="text-sm text-gray-400">№: {{$data->number}} | Дата: {{(!is_null($data->created_at)? $data->created_at->format('d/m/Y') : '')}}</span>
+            <span class="text-sm text-gray-400">№: {{$data->number}} | Дата: {{(!is_null($data->finish_work)? $data->finish_work->format('d/m/Y') : '')}}</span>
         </div>
         <div class="w-2/12">
             <img class=" h-[60px]" src="https://www.westcars.ua/logo.webp" width="150" height="150">
