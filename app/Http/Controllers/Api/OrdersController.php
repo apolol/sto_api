@@ -20,6 +20,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Mockery\Exception;
 
 
 class OrdersController extends Controller
@@ -436,16 +437,27 @@ class OrdersController extends Controller
         return join(' ', $result);
     }
 
-    public function deleteWork(OrderWork $work)
+    public function deleteWork($work)
     {
-        $work->delete();
-        return \response()->json([],200);
+        try {
+            $work = OrderWork::find($work);
+            $work->delete();
+            return \response()->json([],200);
+        }catch (Exception $e){
+            return \response()->json([],400);
+        }
     }
 
-    public function deleteProduct(OrderProduct $product)
+    public function deleteProduct($product)
     {
-        $product->delete();
-        return \response()->json([],200);
+
+        try {
+            $product = OrderProduct::find($product);
+            $product->delete();
+            return \response()->json([],200);
+        }catch (Exception $e){
+            return \response()->json([],400);
+        }
     }
 
 }
