@@ -141,13 +141,13 @@ class ClientsController extends Controller
         $client_car = new ClientCar();
         $client_car->client_id = $request->client_id;
         $client_car->brand_id = $request->brand['id'];
-        $client_car->year = $request?->year ?? 0;
-        $client_car->odometer = $request?->odometer ?? 0;
-        $client_car->engine_type = $request?->engine_type ?? 0;
-        $client_car->car_plate = $request?->car_plate ?? 0;
-        $client_car->engine_value = $request?->engine_value ?? 0;
-        $client_car->vin = $request->vin ?? 0;
-        $client_car->description = $request?->description ?? 0;
+        $client_car->year = $request->year;
+        $client_car->odometer = $request->odometer;
+        $client_car->engine_type = $request->engine_type;
+        $client_car->car_plate = $request->car_plate;
+        $client_car->engine_value = $request->engine_value;
+        $client_car->vin = $request->vin;
+        $client_car->description = $request->description;
         $client_car->save();
         return \response()->json($client_car, 200);
     }
