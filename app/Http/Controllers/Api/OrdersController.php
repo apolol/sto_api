@@ -436,4 +436,16 @@ class OrdersController extends Controller
         return join(' ', $result);
     }
 
+    public function deleteWork(OrderWork $work)
+    {
+        $work->delete();
+        return \response()->json([],200);
+    }
+
+    public function deleteProduct(OrderProduct $product)
+    {
+        $product->delete();
+        return \response()->json([],200);
+    }
+
 }

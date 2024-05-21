@@ -96,13 +96,13 @@ class ClientsController extends Controller
     public function updateClient(Client $client, Request $request): JsonResponse
     {
         $request->validate([
-            'first_name' => 'required|max:255|min:3',
-            'last_name' => 'required|max:255|min:3',
+//            'first_name' => 'required|max:255|min:3',
+//            'last_name' => 'required|max:255|min:3',
             'phone' => 'required|max:10|min:10',
         ],
         [
-            'first_name.required' => 'Ім`я не може бути порожнім',
-            'last_name.required' => 'Фамілія не може бути порожньою',
+//            'first_name.required' => 'Ім`я не може бути порожнім',
+//            'last_name.required' => 'Фамілія не може бути порожньою',
             'phone.required' => 'Номер телефону не може бути порожнім',
             'phone.max' => 'Номер телефону має бути не більше 10 символів',
             'phone.min' => 'Номер телефону має бути не менше 10 символів',
@@ -110,6 +110,12 @@ class ClientsController extends Controller
         $client->first_name = $request->first_name;
         $client->last_name = $request->last_name;
         $client->phone = $request->phone;
+        $client->last_sms_date = $request->last_sms_date;
+        $client->company_name = $request->company_name;
+        $client->company_address = $request->company_address;
+        $client->company_iban = $request->company_iban;
+        $client->company_edrpu = $request->company_edrpu;
+        $client->company_ipn = $request->company_ipn;
         $client->update();
         return \response()->json('', 200);
     }
