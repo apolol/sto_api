@@ -82,6 +82,10 @@
                         <td class="px-4 py-1">{{$data?->client->company_edrpu}}</td>
                     </tr>
                     <tr>
+                        <td class="px-4 py-1">ІПН</td>
+                        <td class="px-4 py-1">{{$data?->client->company_ipn}}</td>
+                    </tr>
+                    <tr>
                         <td class="px-4 py-1">Телефон</td>
                         <td class="px-4 py-1">{{$data?->client->phone}}</td>
                     </tr>
