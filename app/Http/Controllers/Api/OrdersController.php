@@ -376,6 +376,48 @@ class OrdersController extends Controller
         ]);
     }
 
+    public function printPdvInvoice(Order $order){
+        $order->load(['client','car.brand.parent', 'works.work_name', 'products']);
+        $sum_for_work = 0;
+        $sum_for_prod = 0;
+
+        foreach($order->works as $work)
+        {
+            $sum_for_work = $sum_for_work + ($work->price * $work->count);
+        }
+
+        foreach($order->products as $prod)
+        {
+            $sum_for_prod = $sum_for_prod + ($prod->price_for_client * $prod->count);
+        }
+
+        $sum_pdv_work = number_format($this->calculatePercentage($sum_for_work, 20), 2, '.', '');
+        $sum_pdv_parts =  number_format($this->calculatePercentage($sum_for_prod, 20), 2, '.', '');
+        $sum_work_with_pdv = number_format((float)$sum_for_work + (float)$sum_pdv_work, 2, '.', '');
+        $sum_parts_with_pdv= number_format((float)$sum_for_prod + (float)$sum_pdv_parts, 2, '.', '');
+        $sum_without_pdv = $sum_for_work + $sum_for_prod;
+        $sum_wit_pdv = (float)$sum_work_with_pdv + (float)$sum_parts_with_pdv;
+        $sum_pdv = (float)$sum_pdv_work + (float)$sum_pdv_parts;
+        $parts = explode(".",number_format($sum_wit_pdv, 2, '.', ''));
+        $decimal = $parts[1];
+
+        $day_to_pay = Carbon::now()->addDay(5);
+        return view('print_pdv_rah',[
+            'data' => $order,
+            'sum_for_work'=> number_format((float)$sum_for_work, 2, '.', ''),
+            'sum_for_prod'=> number_format((float)$sum_for_prod, 2, '.', ''),
+            'sum_pdv_work'=> $sum_pdv_work,
+            'sum_pdv_parts'=> $sum_pdv_parts,
+            'sum_work_with_pdv'=> $sum_work_with_pdv,
+            'sum_parts_with_pdv'=>  $sum_parts_with_pdv,
+            'sum_without_pdv'=>number_format((float)$sum_without_pdv, 2, '.', ''),
+            'sum_wit_pdv'=>number_format($sum_wit_pdv, 2, '.', ''),
+            'sum_pdv'=>number_format($sum_pdv, 2, '.', ''),
+            'text_pay'=>$this->number2string($sum_wit_pdv).', '.$decimal.' коп.',
+            'day_to_pay'=>$day_to_pay->format('d.m.Y')
+        ]);
+    }
+
     function calculatePercentage($amount, $percentage) {
         return $amount * ($percentage / 100);
     }

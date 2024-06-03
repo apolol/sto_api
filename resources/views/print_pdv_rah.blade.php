@@ -8,8 +8,7 @@
 <body class="w-full p-9 mx-auto">
     <div class="flex flex-wrap items-center gap-1">
         <div class="flex flex-wrap w-7/12">
-            <h1 class="w-full text-[11px]">Акт виконаних робіт</h1>
-            <span class="text-sm text-gray-400">№: {{$data->number}} | Дата: {{(!is_null($data->finish_work)? $data->finish_work->format('d/m/Y') : '')}}</span>
+            <h1 class="w-full text-[11px]">Рахунок на оплату №: {{$data->number}}R від {{now()->format('d.m.Y')}}</h1>
         </div>
         <div class="w-2/12">
             <img class=" h-[60px]" src="https://www.westcars.ua/logo.webp" width="150" height="150">
@@ -66,35 +65,27 @@
                 </div>
                 <table class="w-full text-[11px] font-medium text-gray-800 table-fixed">
                     <tr>
-                        <td class="w-2/12 px-4 py-1">Назва</td>
-                        <td class="w-10/12 px-4 py-1"><strong>{{$data?->client->company_name}}</strong></td>
+                        <td class="w-4/12 px-4 py-1">Назва</td>
+                        <td class="w-8/12 px-4 py-1"><strong>{{$data?->client->company_name}}</strong></td>
                     </tr>
                     <tr>
                         <td class="px-4 py-1">Адреса</td>
                         <td class="px-4 py-1">{{$data?->client->company_address}}</td>
                     </tr>
-                    <tr>
-                        <td class="px-4 py-1">IBAN</td>
-                        <td class="px-4 py-1">{{$data?->client->company_iban}}</td>
-                    </tr>
+
                     <tr>
                         <td class="px-4 py-1">ЄДРПОУ</td>
                         <td class="px-4 py-1">{{$data?->client->company_edrpu}}</td>
                     </tr>
                     <tr>
-                        <td class="px-4 py-1">ІПН</td>
-                        <td class="px-4 py-1">{{$data?->client->company_ipn}}</td>
-                    </tr>
-                    <tr>
-                        <td class="px-4 py-1">Телефон</td>
-                        <td class="px-4 py-1">{{$data?->client->phone}}</td>
-                    </tr>
-                     <tr>
-                        <td class="px-4 py-1">Авто</td>
-                        <td class="px-4 py-1">{{$data?->car->brand->parent->title}} {{$data?->car->brand->title}} | {{$data?->car->car_plate}} | {{$data?->car->odometer}} км</td>
+                        <td class="px-4 py-1">Оплатити до:</td>
+                        <td class="px-4 py-1">{{$day_to_pay}}</td>
                     </tr>
                 </table>
             </div>
+        </div>
+        <div class="w-full font-bold text-gray-800 mt-3 text-[11px]">
+            Примітка: рахунок дійсний протягом 5 банківських днів.
         </div>
         <div class="w-full mt-6 overflow-hidden shadow sm:rounded-lg">
             <div class="px-4 py-1 bg-gray-100 ">
@@ -142,7 +133,8 @@
                     </tr>
                 </table>
         </div>
-        @if($data->products != null)
+
+        @if($data->products->count() > 0)
             <div class="w-full mt-6 overflow-hidden shadow sm:rounded-lg">
                 <div class="px-4 py-1 text-center bg-gray-100">
                     <h3 class="text-[11px] font-semibold leading-6 text-gray-900">Встановлені запасні частини та матеріали</h3>
@@ -211,27 +203,21 @@
         </div>
 
         <div class="w-full mt-2 text-sm font-bold text-left">
-            <input type="text" class="w-full" value="До оплати (прописом): {{$text_pay}}">
-
+             <input type="text" class="w-full" value="До оплати (прописом): {{$text_pay}}">
         </div>
         <div class="w-full mt-2 text-[10px] text-left">
             Всі роботи та послуги виконані якісно та в повному обсязі. Претензій до обсягу, якості та строку виконаних робіт та до якості ТЗ не маю. З обсягом робіт та послуг згоден.
         </div>
         <div class="flex flex-wrap justify-between w-full mt-10 text-[11px] px-10">
-            <div class="w-full mb-3 text-sm font-bold text-center">
-                Підписи сторін
-            </div>
+
             <div class="w-7/12">
-                ФОП Гаврилова Л.Г.
-                <br>
-                <br>
-                __________________
+
             </div>
-            <div class="w-5/12">
-                Директор {{$data?->client->company_name}}
+            <div class="w-5/12 font-bold">
+                Виписав (ла) Фізична особа-підприємець
                 <br>
                 <br>
-                __________________
+                        __________________Ліза ГАВРИЛОВА
             </div>
         </div>
     </div>

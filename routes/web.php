@@ -22,3 +22,4 @@ require __DIR__.'/auth.php';
 
 Route::get('orders/print_order/{order}', [OrdersController::class, 'print'])->name('print_order');
 Route::get('orders/print_order_pdv/{order}', [OrdersController::class, 'printPdv'])->name('print_order_pdv');
+Route::get('orders/print_order_invoice_pdv/{order}', [OrdersController::class, 'printPdvInvoice'])->name('print_order_invoice_pdv');
