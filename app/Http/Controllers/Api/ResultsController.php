@@ -36,12 +36,12 @@ class ResultsController extends Controller
                     $sum_for_work += $temp_price_work;
                     $byWork->push([
                         'number' => $order->number,
-                        'name' => $work->work_name->name,
+                        'name' => $work->work_name->title,
                         'price' => $work->price,
                         'count' => $work->count,
                         'full_price' => $temp_price_work,
                         'worker' => $work->worker->name,
-                        'date' => Carbon::parse($work->finish_work)->format('Y-m-d'),
+                        'date' => Carbon::parse($order->finish_work)->format('Y-m-d'),
                     ]);
                 }catch (\Exception $exception){
 
