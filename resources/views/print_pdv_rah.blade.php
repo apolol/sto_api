@@ -78,6 +78,10 @@
                         <td class="px-4 py-1">{{$data?->client->company_edrpu}}</td>
                     </tr>
                     <tr>
+                        <td class="px-4 py-1">Авто</td>
+                        <td class="px-4 py-1">{{$data?->car->brand->parent->title}} {{$data?->car->brand->title}} | {{$data?->car->car_plate}} | {{$data?->car->odometer}} км</td>
+                    </tr>
+                    <tr>
                         <td class="px-4 py-1">Оплатити до:</td>
                         <td class="px-4 py-1">{{$day_to_pay}}</td>
                     </tr>
