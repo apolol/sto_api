@@ -419,7 +419,7 @@ class OrdersController extends Controller
             'sum_without_pdv'=>number_format((float)$sum_without_pdv, 2, '.', ''),
             'sum_wit_pdv'=>number_format($sum_wit_pdv, 2, '.', ''),
             'sum_pdv'=>number_format($sum_pdv, 2, '.', ''),
-            'text_pay'=>,
+            'text_pay'=>$text_pay,
             'day_to_pay'=>$day_to_pay->format('d.m.Y')
         ]);
     }
