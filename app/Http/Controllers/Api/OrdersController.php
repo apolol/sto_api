@@ -361,6 +361,13 @@ class OrdersController extends Controller
         $parts = explode(".",number_format($sum_wit_pdv, 2, '.', ''));
         $decimal = $parts[1];
 
+        $text_pay = 'Введіть дані в ручну';
+        try{
+            $text_pay = $this->number2string($sum_wit_pdv).', '.$decimal.' коп.';
+        }catch(\Exception $e){
+            
+        }
+
         return view('print_pdv',[
             'data' => $order,
             'sum_for_work'=> number_format((float)$sum_for_work, 2, '.', ''),
@@ -372,7 +379,7 @@ class OrdersController extends Controller
             'sum_without_pdv'=>number_format((float)$sum_without_pdv, 2, '.', ''),
             'sum_wit_pdv'=>number_format($sum_wit_pdv, 2, '.', ''),
             'sum_pdv'=>number_format($sum_pdv, 2, '.', ''),
-            'text_pay'=>$this->number2string($sum_wit_pdv).', '.$decimal.' коп.'
+            'text_pay'=>$text_pay,
         ]);
     }
 
