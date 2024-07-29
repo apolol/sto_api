@@ -56,9 +56,9 @@ class Order extends Model
         $pdv = $filters['pdv'] ?? null;
 
          $query->when($pdv, function ($query) use ($pdv) {
-             if ($pdv == 0)
+             if ($pdv == 'Без ПДВ')
                  $query->where('type', 0);
-             if ($pdv == 1)
+             if ($pdv == 'ПДВ')
                  $query->where('type', 1);
          });
 
