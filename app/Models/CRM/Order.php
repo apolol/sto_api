@@ -53,6 +53,14 @@ class Order extends Model
     public function scopeFilter($query, array $filters)
     {
         $search = $filters['search'] ?? null;
+        $pdv = $filters['pdv'] ?? null;
+
+         $query->when($pdv, function ($query) use ($pdv) {
+             if ($pdv == 0)
+                 $query->where('type', 0);
+             if ($pdv == 1)
+                 $query->where('type', 1);
+         });
 
         $query->when($search, function ($query) use ($search) {
             $query->where(function ($query) use ($search) {
