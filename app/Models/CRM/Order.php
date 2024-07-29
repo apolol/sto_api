@@ -25,9 +25,9 @@ class Order extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'created_at' => 'datetime:Y-m-d H:i',
-        'updated_at' => 'datetime:Y-m-d H:i',
-        'finish_work' => 'datetime:Y-m-d H:i',
+        'created_at' => 'datetime:Y-m-d',
+        'updated_at' => 'datetime:Y-m-d',
+        'finish_work' => 'datetime:Y-m-d',
     ];
 
     public function car(): HasOne
