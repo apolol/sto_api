@@ -30,8 +30,26 @@ class OrdersController extends Controller
        // $orders = Order::filter(['search' => $request->get('search')])->with(['client', 'car.brand.parent', 'works', 'products'])->orderBy('created_at', 'desc')->paginate(20);
         $orders = Order::filter(['search' => $request->get('search'), 'pdv' => $request->get('pdv')])
             ->with(['client', 'car.brand.parent', 'works', 'products'])
-            ->withSum('products as products_sum', \DB::raw('price_for_client * count'))
-            ->withSum('works as works_sum', \DB::raw('price * count'))
+            ->addSelect(['products_sum' => function($query) {
+                $query->selectRaw('SUM(
+            CASE
+                WHEN orders.type = 1 THEN price_for_client * count * 1.2
+                ELSE price_for_client * count
+            END
+        )')
+                    ->from('products')
+                    ->whereColumn('order_id', 'orders.id');
+            }])
+            ->addSelect(['works_sum' => function($query) {
+                $query->selectRaw('SUM(
+            CASE
+                WHEN orders.type = 1 THEN price * count * 1.2
+                ELSE price * count
+            END
+        )')
+                    ->from('works')
+                    ->whereColumn('order_id', 'orders.id');
+            }])
             ->orderBy('created_at', 'desc')
             ->paginate(20);
         return \response()->json($orders);
