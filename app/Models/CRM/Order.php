@@ -56,7 +56,7 @@ class Order extends Model
 
         $query->when($search, function ($query) use ($search) {
             $query->where(function ($query) use ($search) {
-                $query->whereAny(['check','start_work','end_work', 'number', 'finish_work'], 'like', "%$search%");
+                $query->whereAny(['check','start_work','end_work', 'number', 'finish_work','status','pay_status'], 'like', "%$search%");
             });
             $query->orWhereHas('car', function ($query) use ($search) {
                 $query->where('car_plate', 'like', "%$search%")
