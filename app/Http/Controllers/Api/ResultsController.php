@@ -32,14 +32,14 @@ class ResultsController extends Controller
             $temp_price_pclient = 0;
             foreach ($order->works as $work){
                 try {
-                    $temp_price_work = ($work->price != null || $work->price != 0) ? $work->price * $work->count : 0;
+                    $temp_price_work += ($work->price != null || $work->price != 0) ? $work->price * $work->count : 0;
                     $sum_for_work += $temp_price_work;
                     $byWork->push([
                         'number' => $order->number,
                         'name' => $work->work_name->title,
                         'price' => $work->price,
                         'count' => $work->count,
-                        'full_price' => $temp_price_work,
+                        'full_price' => ($work->price != null || $work->price != 0) ? $work->price * $work->count : 0,
                         'worker' => $work->worker->name,
                         'date' => Carbon::parse($order->finish_work)->format('Y-m-d'),
                     ]);
@@ -49,8 +49,8 @@ class ResultsController extends Controller
             }
             foreach ($order->products as $product){
                 try {
-                    $temp_price_prod = ($product->real_price != null || $product->real_price != 0) ? $product->real_price * $product->count : 0;
-                    $temp_price_pclient = ($product->price_for_client != null || $product->price_for_client != 0) ? $product->price_for_client * $product->count : 0;
+                    $temp_price_prod += ($product->real_price != null || $product->real_price != 0) ? $product->real_price * $product->count : 0;
+                    $temp_price_pclient += ($product->price_for_client != null || $product->price_for_client != 0) ? $product->price_for_client * $product->count : 0;
                     $sum_for_client_parts += $temp_price_pclient;
                     $sum_for_parts += $temp_price_prod;
                     $byParts->push([
@@ -59,8 +59,8 @@ class ResultsController extends Controller
                         'price_real' => $product->real_price,
                         'count' => $product->count,
                         'price_client' => $product->price_for_client,
-                        'full_price_real' => number_format( $temp_price_prod, 2, '.', ''),
-                        'full_price_client' => number_format( $temp_price_pclient, 2, '.', ''),
+                        'full_price_real' => number_format( ($product->real_price != null || $product->real_price != 0) ? $product->real_price * $product->count : 0, 2, '.', ''),
+                        'full_price_client' => number_format( ($product->price_for_client != null || $product->price_for_client != 0) ? $product->price_for_client * $product->count : 0, 2, '.', ''),
                         'where_get' => $product->where_get,
                     ]);
                 }catch (\Exception $exception){
