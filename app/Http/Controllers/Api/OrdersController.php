@@ -28,7 +28,7 @@ class OrdersController extends Controller
     public function getOrders(Request $request): JsonResponse|Response
     {
        // $orders = Order::filter(['search' => $request->get('search')])->with(['client', 'car.brand.parent', 'works', 'products'])->orderBy('created_at', 'desc')->paginate(20);
-        $orders = Order::filter(['search' => $request->get('search'), 'pdv' => $request->get('pdv')])
+        $orders = Order::filter(['search' => $request->get('search'), 'pdv' => $request->get('pdv'), 'pay_status' => $request->get('pay_status')])
             ->with(['client', 'car.brand.parent', 'works', 'products'])
             ->withSum('products as products_sum', \DB::raw('price_for_client * count'))
             ->withSum('works as works_sum', \DB::raw('price * count'))

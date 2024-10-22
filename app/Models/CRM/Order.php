@@ -54,6 +54,7 @@ class Order extends Model
     {
         $search = $filters['search'] ?? null;
         $pdv = $filters['pdv'] ?? null;
+        $pay_status = $filters['pay_status'] ?? null;
 
          $query->when($pdv, function ($query) use ($pdv) {
              if ($pdv == 'Без ПДВ')
@@ -62,6 +63,12 @@ class Order extends Model
                  $query->where('type', 1);
          });
 
+         $query->when($pay_status, function ($query) use ($pay_status) {
+            if ($pay_status == 'Неоплачено')
+                $query->where('pay_status', 'Неоплачено');
+        });
+
+         
         $query->when($search, function ($query) use ($search) {
             $query->where(function ($query) use ($search) {
                 $query->whereAny(['check','start_work','end_work', 'number', 'finish_work','status','pay_status'], 'like', "%$search%");
