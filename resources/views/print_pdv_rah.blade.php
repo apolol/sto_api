@@ -8,7 +8,7 @@
 <body class="w-full p-9 mx-auto">
     <div class="flex flex-wrap items-center gap-1">
         <div class="flex flex-wrap w-7/12">
-            <input type="text" class="w-full text-[11px]">Рахунок на оплату №: {{$data->number}}R від {{now()->format('d.m.Y')}}</input>
+            <input type="text" class="w-full text-[11px]" value="Рахунок на оплату №: {{$data->number}}R від {{now()->format('d.m.Y')}}"></input>
         </div>
         <div class="w-2/12">
             <img class=" h-[60px]" src="https://www.westcars.ua/logo.webp" width="150" height="150">
