@@ -227,8 +227,8 @@ class OrdersController extends Controller
 
     public function updateOrderStatus(Order $order, Request $request): JsonResponse|Response
     {
-        if($order->status == 'Завершено' && auth()->id() == '7560883a-6f58-408d-919d-b7843dfd76b9' )
-            return \response()->json([],400);
+//        if($order->status == 'Завершено' && auth()->id() == '7560883a-6f58-408d-919d-b7843dfd76b9' )
+//            return \response()->json(['Немає доступу'],400);
         $order->status = ($request->status == 'Взято в роботу' ? 'Завершено' : 'Взято в роботу');
         $order->finish_work = ($request->status == 'Взято в роботу' ? Carbon::now() : null) ;
         $order->update();
