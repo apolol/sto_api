@@ -57,6 +57,7 @@ Route::middleware(['auth:sanctum'])->group(function (){
         Route::delete('/delete/{order}', [OrdersController::class, 'deleteOrder']);
         Route::delete('/delete_product/{work}', [OrdersController::class, 'deleteProduct']);
         Route::delete('/delete_work/{product}', [OrdersController::class, 'deleteWork']);
+        Route::put('/update_note/{order}', [OrdersController::class, 'orderNote']);
     });
 
     Route::group(['prefix' => 'results'], function(){

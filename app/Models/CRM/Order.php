@@ -18,7 +18,7 @@ class Order extends Model
 
     public $fillable = ['check', 'pay_status', 'odometer', 'client_id', 'client_car_id',
         'worker_id', 'start_work', 'end_work', 'status', 'number', 'created_at', 'updated_at',
-        'finish_work', 'type'];
+        'finish_work', 'type', 'note'];
     /**
      * The attributes that should be cast.
      *

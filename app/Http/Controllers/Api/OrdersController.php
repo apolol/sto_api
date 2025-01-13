@@ -514,10 +514,20 @@ class OrdersController extends Controller
 
     public function deleteProduct($product)
     {
-
         try {
             $product = OrderProduct::find($product);
             $product->delete();
+            return \response()->json([],200);
+        }catch (Exception $e){
+            return \response()->json([],400);
+        }
+    }
+
+    public function orderNote(Order $order, Request $request): JsonResponse|Response
+    {
+        try {
+            $order->note = $request?->note ?? $order->note;
+            $order->update();
             return \response()->json([],200);
         }catch (Exception $e){
             return \response()->json([],400);

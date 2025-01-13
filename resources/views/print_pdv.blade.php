@@ -217,6 +217,11 @@
         <div class="w-full mt-2 text-[10px] text-left">
             Всі роботи та послуги виконані якісно та в повному обсязі. Претензій до обсягу, якості та строку виконаних робіт та до якості ТЗ не маю. З обсягом робіт та послуг згоден.
         </div>
+        @if($data->note != null)
+        <div class="w-full mt-2 text-[10px] text-left">
+            <span class="font-bold">Примітка: </span>{{$data->note}}
+        </div>
+        @endif
         <div class="flex flex-wrap justify-between w-full mt-10 text-[11px] px-10">
             <div class="w-full mb-3 text-sm font-bold text-center">
                 Підписи сторін
