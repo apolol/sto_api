@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('event_calendars', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('car_id')->nullable();
+            $table->string('title')->nullable();
+            $table->date('date')->nullable();
+            $table->text('description')->nullable();
+            $table->integer('status')->default(0)->nullable();
             $table->timestamps();
         });
     }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ClientsController;
 use App\Http\Controllers\Api\OrdersController;
 use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\ResultsController;
+use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\UserController;
 /*
 |--------------------------------------------------------------------------
@@ -58,10 +59,17 @@ Route::middleware(['auth:sanctum'])->group(function (){
         Route::delete('/delete_product/{work}', [OrdersController::class, 'deleteProduct']);
         Route::delete('/delete_work/{product}', [OrdersController::class, 'deleteWork']);
         Route::put('/update_note/{order}', [OrdersController::class, 'orderNote']);
+        Route::put('/update_discount/{order}', [OrdersController::class, 'changeDiscount']);
     });
 
     Route::group(['prefix' => 'results'], function(){
         Route::get('/',[ResultsController::class,'index']);
     });
     Route::get('/get_brands', [ServiceController::class, 'getBrands']);
+
+    Route::group(['prefix' => 'events'], function(){
+        Route::get('/',[EventController::class,'index']);
+        Route::post('/', [EventController::class, 'store']);
+        Route::put('/{event}', [EventController::class, 'update']);
+    });
 });

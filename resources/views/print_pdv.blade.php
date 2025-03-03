@@ -214,11 +214,11 @@
             <input type="text" class="w-full" value="До оплати (прописом): {{$text_pay}}">
 
         </div>
-        <div class="w-full mt-2 text-[10px] text-left">
+        <div class="w-full mt-2 text-[12px] text-left">
             Всі роботи та послуги виконані якісно та в повному обсязі. Претензій до обсягу, якості та строку виконаних робіт та до якості ТЗ не маю. З обсягом робіт та послуг згоден.
         </div>
         @if($data->note != null)
-        <div class="w-full mt-2 text-[10px] text-left">
+        <div class="w-full mt-2 text-[12px] text-left">
             <span class="font-bold">Примітка: </span>{{$data->note}}
         </div>
         @endif

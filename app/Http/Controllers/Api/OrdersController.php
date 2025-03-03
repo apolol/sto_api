@@ -276,26 +276,34 @@ class OrdersController extends Controller
         }
         $sum = 0;
         foreach ($order->works as $work){
+            $work_price = $work->price;
+            if($order->discount_works != null || $order->discount_works != 0){
+                $work_price = $work_price - ($work_price * $order->discount_works / 100);
+            }
             $rows->push([
                 'code' => 'ID: '.$work->work_name->id,
                 'name' => $work->work_name->title,
                 'cnt' => (int) $work->count,
-                'price' => ceil($work->price),
+                'price' => ceil($work_price),
                 'disc' => 0,
                 'taxgrp' => '2'
             ]);
-            $sum = $sum + ($work->price * $work->count);
+            $sum = $sum + ($work_price * $work->count);
         }
         foreach ($order->products as $product){
+            $prod = $product->price_for_client;
+            if($order->discount_products != null || $order->discount_products != 0){
+                $prod = $prod - ($prod * $order->discount_products / 100);
+            }
             $rows->push([
                 'code' => 'ID: '.$product->id,
                 'name' => $product->title,
                 'cnt' => (int) $product->count,
-                'price' => (int) ceil($product->price_for_client),
+                'price' => (int) ceil(prod),
                 'disc' => 0,
                 'taxgrp' => '2'
             ]);
-            $sum = $sum + (ceil($product->price_for_client) * $product->count);
+            $sum = $sum + (ceil(prod) * $product->count);
         }
 
         if($order->pay_status == 'В касу'){
@@ -328,19 +336,34 @@ class OrdersController extends Controller
         $order->load(['client','car.brand.parent', 'works.work_name', 'products']);
         $sum_for_work = 0;
         $sum_for_prod = 0;
+        $sum_for_prod_discount = 0;
+        $sum_for_work_discount = 0;
 
         foreach($order->works as $work)
         {
+            $priceWork = $work->price;
+            if($order->discount_works != null || $order->discount_works != 0){
+                $priceWork = $priceWork - ($priceWork * $order->discount_works / 100);
+            }
+            $sum_for_work_discount = $sum_for_work_discount + ($priceWork * $work->count);
             $sum_for_work = $sum_for_work + ($work->price * $work->count);
         }
 
         foreach($order->products as $prod)
         {
+            $priceProd = $prod->price_for_client;
+            if($order->discount_products != null || $order->discount_products != 0){
+                $priceProd = $priceProd - ($priceProd * $order->discount_products / 100);
+            }
             $sum_for_prod = $sum_for_prod + ($prod->price_for_client * $prod->count);
+            $sum_for_prod_discount = $sum_for_prod_discount + ($priceProd * $prod->count);
+
         }
         return view('print',[
             'data' => $order,
             'sum_for_work'=> number_format((float)$sum_for_work, 2, '.', ''),
+            'sum_for_work_discount'=> number_format((float)$sum_for_work_discount, 2, '.', ''),
+            'sum_for_prod_discount'=> number_format((float)$sum_for_prod_discount, 2, '.', ''),
             'sum_for_prod'=> number_format((float)$sum_for_prod, 2, '.', '')
         ]);
     }
@@ -527,6 +550,18 @@ class OrdersController extends Controller
     {
         try {
             $order->note = $request?->note ?? $order->note;
+            $order->update();
+            return \response()->json([],200);
+        }catch (Exception $e){
+            return \response()->json([],400);
+        }
+    }
+
+    public function changeDiscount(Order $order, Request $request): JsonResponse|Response
+    {
+        try {
+            $order->discount_products = $request?->discount_products ?? $order->discount_products;
+            $order->discount_works = $request?->discount_works ?? $order->discount_works;
             $order->update();
             return \response()->json([],200);
         }catch (Exception $e){
