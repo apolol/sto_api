@@ -33,7 +33,7 @@ class ResultsController extends Controller
             foreach ($order->works as $work){
                 try {
                     $temp_price_work += ($work->price != null || $work->price != 0) ? $work->price * $work->count : 0;
-                    if($order->discount_works != null || $order->discount_works != 0){
+                    if( $order->discount_works != 0){
                         $temp_price_work = $temp_price_work - ($temp_price_work * $order->discount_works / 100);
                     }
                     $sum_for_work += $temp_price_work;
@@ -54,7 +54,7 @@ class ResultsController extends Controller
                 try {
                     $temp_price_prod += ($product->real_price != null || $product->real_price != 0) ? $product->real_price * $product->count : 0;
                     $temp_price_pclient += ($product->price_for_client != null || $product->price_for_client != 0) ? $product->price_for_client * $product->count : 0;
-                    if($order->discount_products != null || $order->discount_products != 0){
+                    if( $order->discount_products != 0){
                         $temp_price_pclient = $temp_price_pclient - ($temp_price_pclient * $order->discount_products / 100);
                         $temp_price_prod = $temp_price_prod - ($temp_price_pclient * $order->discount_products / 100);
                     }

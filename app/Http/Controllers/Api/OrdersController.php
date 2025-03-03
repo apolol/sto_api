@@ -277,7 +277,7 @@ class OrdersController extends Controller
         $sum = 0;
         foreach ($order->works as $work){
             $work_price = $work->price;
-            if($order->discount_works != null || $order->discount_works != 0){
+            if($order->discount_works != 0){
                 $work_price = $work_price - ($work_price * $order->discount_works / 100);
             }
             $rows->push([
@@ -292,7 +292,7 @@ class OrdersController extends Controller
         }
         foreach ($order->products as $product){
             $prod = $product->price_for_client;
-            if($order->discount_products != null || $order->discount_products != 0){
+            if($order->discount_products != 0){
                 $prod = $prod - ($prod * $order->discount_products / 100);
             }
             $rows->push([
@@ -342,7 +342,7 @@ class OrdersController extends Controller
         foreach($order->works as $work)
         {
             $priceWork = $work->price;
-            if($order->discount_works != null || $order->discount_works != 0){
+            if( $order->discount_works != 0){
                 $priceWork = $priceWork - ($priceWork * $order->discount_works / 100);
             }
             $sum_for_work_discount = $sum_for_work_discount + ($priceWork * $work->count);
@@ -352,7 +352,7 @@ class OrdersController extends Controller
         foreach($order->products as $prod)
         {
             $priceProd = $prod->price_for_client;
-            if($order->discount_products != null || $order->discount_products != 0){
+            if($order->discount_products != 0){
                 $priceProd = $priceProd - ($priceProd * $order->discount_products / 100);
             }
             $sum_for_prod = $sum_for_prod + ($prod->price_for_client * $prod->count);

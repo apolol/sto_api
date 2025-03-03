@@ -107,7 +107,7 @@
                         <td class="px-4 py-1 font-bold text-right">Сума</td>
                         <td class="px-4 py-1 text-right">{{$sum_for_work}} грн</td>
                     </tr>
-                    @if ($data->discount_works !== null || $data->discount_works !== 0)
+                    @if ($data->discount_works != 0)
                         <tr class="border-b border-gray-200">
                             <td class="px-4 py-1 text-right"></td>
                             <td class="px-4 py-1 text-right"></td>
@@ -149,7 +149,7 @@
                         <td class="px-4 py-1 font-bold text-right">Сума</td>
                         <td class="px-4 py-1 text-right">{{$sum_for_prod}} грн</td>
                     </tr>
-                    @if ($data->discount_products !== null || $data->discount_products !== 0)
+                    @if ($data->discount_products != 0)
                     <tr class="border-b border-gray-200">
                         <td class="px-4 py-1 text-right"></td>
                         <td class="px-4 py-1 text-right"></td>
@@ -169,7 +169,7 @@
         @endif
 
         <div class="w-full mt-4 text-sm font-bold text-right">
-            @if ($data->discount_products !== null || $data->discount_products !== 0)
+            @if ($data->discount_products != 0 || $data->discount_works != 0)
                 До сплати: {{number_format($sum_for_prod_discount + $sum_for_work_discount, 2, '.', '')}} грн
             @else
                 До сплати: {{number_format($sum_for_prod + $sum_for_work, 2, '.', '')}} грн
