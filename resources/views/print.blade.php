@@ -117,7 +117,7 @@
                         <tr class="border-b border-gray-200">
                             <td class="px-4 py-1 text-right"></td>
                             <td class="px-4 py-1 text-right"></td>
-                            <td class="px-4 py-1 font-bold text-right">Сума зі скидкою</td>
+                            <td class="px-4 py-1 font-bold text-right">Сума зі знижкою</td>
                             <td class="px-4 py-1 text-right">{{$sum_for_work_discount}} грн</td>
                         </tr>
                     @endif
@@ -159,7 +159,7 @@
                     <tr class="border-b border-gray-200">
                         <td class="px-4 py-1 text-right"></td>
                         <td class="px-4 py-1 text-right"></td>
-                        <td class="px-4 py-1 font-bold text-right">Сума зі скидкою</td>
+                        <td class="px-4 py-1 font-bold text-right">Сума зі знижкою</td>
                         <td class="px-4 py-1 text-right">{{$sum_for_prod_discount}} грн</td>
                     </tr>
                 @endif
