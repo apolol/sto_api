@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Wheel extends Model
 {
     use HasFactory;
+
+    public $fillable = ['client_id', 'title', 'place', 'taken', 'status'];
+
 }

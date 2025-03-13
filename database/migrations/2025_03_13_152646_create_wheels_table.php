@@ -15,6 +15,8 @@ return new class extends Migration
             $table->foreignUuid('client_id')->nullable();
             $table->text('title')->nullable();
             $table->string('place')->nullable();
+            $table->date('taken')->nullable();
+            $table->integer('status')->default(0)->nullable();
             $table->timestamps();
         });
     }
