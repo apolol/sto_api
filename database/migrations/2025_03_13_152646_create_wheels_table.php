@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('place')->nullable();
             $table->date('taken')->nullable();
             $table->integer('status')->default(0)->nullable();
+            $table->integer('count')->default(1)->nullable();
             $table->timestamps();
         });
     }

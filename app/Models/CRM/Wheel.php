@@ -9,6 +9,10 @@ class Wheel extends Model
 {
     use HasFactory;
 
-    public $fillable = ['client_id', 'title', 'place', 'taken', 'status'];
-
+    public $fillable = ['client_id', 'title', 'place', 'taken', 'status', 'count'];
+    
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
+    ];
 }

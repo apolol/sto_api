@@ -24,6 +24,8 @@ class WheelsController extends Controller
         $whell->client_id = $requset->client_id;
         $whell->title = $requset?->title ?? 'Невказано';
         $whell->place = $requset?->place ?? 'Невказано';
+        $whell->count = $requset?->count ?? 1;
+        
         $whell->save();
         
         return response()->json();
