@@ -299,11 +299,11 @@ class OrdersController extends Controller
                 'code' => 'ID: '.$product->id,
                 'name' => $product->title,
                 'cnt' => (int) $product->count,
-                'price' => (int) ceil(prod),
+                'price' => (int) ceil($prod),
                 'disc' => 0,
                 'taxgrp' => '2'
             ]);
-            $sum = $sum + (ceil(prod) * $product->count);
+            $sum = $sum + (ceil($prod) * $product->count);
         }
 
         if($order->pay_status == 'В касу'){
