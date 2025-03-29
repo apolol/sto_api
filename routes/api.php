@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\ResultsController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\WheelsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -60,6 +61,12 @@ Route::middleware(['auth:sanctum'])->group(function (){
         Route::delete('/delete_work/{product}', [OrdersController::class, 'deleteWork']);
         Route::put('/update_note/{order}', [OrdersController::class, 'orderNote']);
         Route::put('/update_discount/{order}', [OrdersController::class, 'changeDiscount']);
+    });
+
+    Route::group(['prefix' => 'wheels'],function(){
+        Route::get('/{client}', [WheelsController::class, 'index']);
+        Route::post('/', [WheelsController::class, 'create']);
+        Route::delete('/{wheel}', [WheelsController::class, 'delete']);
     });
 
     Route::group(['prefix' => 'results'], function(){
