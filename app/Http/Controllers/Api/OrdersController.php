@@ -160,6 +160,7 @@ class OrdersController extends Controller
         $orderWork->work_id = $new_id != null ? $new_id->id : $request->get('work_id');
         $orderWork->count = $request->get('count');
         $orderWork->price = $request->get('price');
+        $orderWork->for_worker = $request->get('for_worker');
         $orderWork->save();
 
         return \response()->json($orderWork);
@@ -176,6 +177,7 @@ class OrdersController extends Controller
         $orderWork->work_id = $new_id != null ? $new_id->id : $request->get('work_id');
         $orderWork->count = $request->get('count');
         $orderWork->price = $request->get('price');
+        $orderWork->for_worker = $request->get('for_worker');
         $orderWork->save();
 
         return \response()->json($orderWork);

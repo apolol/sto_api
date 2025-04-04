@@ -20,7 +20,7 @@ class OrderWork extends Model
     protected $guarded = [];
 
     protected $fillable = [
-        'order_id','worker_id','work_id','count','price'
+        'order_id','worker_id','work_id','count','price','for_worker'
     ];
 
     public function work_name(): BelongsTo
